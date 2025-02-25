@@ -19,14 +19,14 @@ import javax.swing.JTextField;
  */
 public class Ventana extends JFrame{
     public Ventana(String title) {
-        this.setVisible(true);
         
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle(title);
         this.setSize(500, 800);
         
         this.add(login());
-        
+        this.setVisible(true);
+
     }
     
     public JPanel login(){
