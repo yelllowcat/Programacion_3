@@ -27,11 +27,10 @@ public class Ventana extends JFrame{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle(title);
         this.setSize(1000, 500);
-        
-       this.add(login());
-      //  this.add(singUp());
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-         this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.add(login());
+        this.add(singUp());
+        this.setVisible(true);
          
     }
     
@@ -43,8 +42,7 @@ public class Ventana extends JFrame{
         panel.setLocation(0, 0);
         panel.setLayout(null);
         
-        JLabel imagen = new JLabel(new ImageIcon("login.jpg"));
-      
+        JLabel imagen = new JLabel(new ImageIcon("fondo.jpg"));
         imagen.setBounds(0,0,500,500);
         
         
@@ -58,43 +56,51 @@ public class Ventana extends JFrame{
         
         JLabel nameUser = new JLabel("NOMBRE DE USUARIO");
         nameUser.setSize(300, 50);
-        nameUser.setLocation(100, 150);
-        nameUser.setForeground(Color.white);
+        nameUser.setLocation(100, 130);
+        nameUser.setForeground(Color.black);
         nameUser.setFont(new Font("Serif",Font.ITALIC,12));
         
         JTextField campoUsuario = new JTextField();
-        campoUsuario.setLocation(100, 200);
+        campoUsuario.setLocation(100, 180);
         campoUsuario.setSize(300,40);
         campoUsuario.setBackground(Color.white);
         campoUsuario.setOpaque(true);
         
         JLabel contrasena = new JLabel("CONTRASENA");
         contrasena.setSize(300, 50);
-        contrasena.setLocation(100, 260);
-        contrasena.setForeground(Color.white);
+        contrasena.setLocation(100, 240);
+        contrasena.setForeground(Color.black);
         contrasena.setFont(new Font("Serif",Font.ITALIC,12));
         
         JTextField campoContrasena = new JTextField();
-        campoContrasena.setLocation(100, 310);
+        campoContrasena.setLocation(100, 290);
         campoContrasena.setSize(300,40);
         campoContrasena.setBackground(Color.white);
         campoContrasena.setOpaque(true);
 
-       
+       ImageIcon user = new ImageIcon("user.png");
+        JLabel userLogo = new JLabel(user);
+        userLogo.setBounds(50, 170, 50, 50);
+        
+        ImageIcon candado = new ImageIcon("candado.png");
+        JLabel password = new JLabel(candado);
+        password.setBounds(50, 280, 50, 50);
+
 
         
         JButton botonAcceder = new JButton("Acceder");
-        botonAcceder.setBounds(150, 400, 200, 50);
+        botonAcceder.setBounds(150, 390, 200, 50);
         
-                
-        
-        panel.add(botonAcceder);
         panel.add(imagen);
-        panel.add(campoContrasena);
-        panel.add(acceder);
-        panel.add(nameUser);
-        panel.add(campoUsuario);
-        panel.add(contrasena);
+        imagen.add(userLogo);
+        imagen.add(password);
+        imagen.add(campoContrasena);
+        imagen.add(acceder);
+        imagen.add(nameUser);
+        imagen.add(campoUsuario);
+        imagen.add(contrasena);
+        imagen.add(botonAcceder);
+        
         
         return panel;
     }
@@ -107,36 +113,53 @@ public class Ventana extends JFrame{
         panel.setLocation(500, 0);
         panel.setLayout(null);
         
+        JLabel imagen = new JLabel(new ImageIcon("singup.jpeg"));
+        imagen.setBounds(500,0,500,500);
         
         
-        
-        JLabel acceder = new JLabel(" Inicio de sesion");
+        JLabel acceder = new JLabel("Registrate");
         acceder.setSize(300, 70);
         acceder.setLocation(100, 30);
         acceder.setHorizontalAlignment(JLabel.CENTER);
         acceder.setFont(new Font("Serif",Font.BOLD,24));
         acceder.setForeground(Color.WHITE);
         
-        JLabel nameUser = new JLabel("NOMBRE DE USUARIO");
+        JLabel nameUser = new JLabel("Nombre completo");
         nameUser.setSize(300, 50);
-        nameUser.setLocation(100, 150);
+        nameUser.setLocation(100, 100);
         nameUser.setForeground(Color.white);
         nameUser.setFont(new Font("Serif",Font.ITALIC,12));
         
+        
+        
+
+        
         JTextField campoUsuario = new JTextField();
-        campoUsuario.setLocation(100, 200);
+        campoUsuario.setLocation(100, 140);
         campoUsuario.setSize(300,40);
         campoUsuario.setBackground(Color.white);
         campoUsuario.setOpaque(true);
         
-        JLabel contrasena = new JLabel("CONTRASENA");
+        JLabel email = new JLabel("Email");
+        email.setSize(300, 50);
+        email.setLocation(100, 180);
+        email.setForeground(Color.white);
+        email.setFont(new Font("Serif",Font.ITALIC,12));
+        
+        JTextField campoEmail = new JTextField();
+        campoEmail.setLocation(100, 220);
+        campoEmail.setSize(300,40);
+        campoEmail.setBackground(Color.white);
+        campoEmail.setOpaque(true);
+        
+        JLabel contrasena = new JLabel("Contrasena");
         contrasena.setSize(300, 50);
         contrasena.setLocation(100, 260);
         contrasena.setForeground(Color.white);
         contrasena.setFont(new Font("Serif",Font.ITALIC,12));
         
         JTextField campoContrasena = new JTextField();
-        campoContrasena.setLocation(100, 310);
+        campoContrasena.setLocation(100, 300);
         campoContrasena.setSize(300,40);
         campoContrasena.setBackground(Color.white);
         campoContrasena.setOpaque(true);
@@ -144,17 +167,19 @@ public class Ventana extends JFrame{
        
 
         
-        JButton botonAcceder = new JButton("Acceder");
-        botonAcceder.setBounds(150, 400, 200, 50);
+        JButton botonAcceder = new JButton("Registrar");
+        botonAcceder.setBounds(100, 370, 150, 50);
         
                 
-        
-        panel.add(botonAcceder);
-        panel.add(campoContrasena);
-        panel.add(acceder);
-        panel.add(nameUser);
-        panel.add(campoUsuario);
-        panel.add(contrasena);
+        panel.add(imagen);
+        imagen.add(email);
+        imagen.add(campoEmail);
+        imagen.add(botonAcceder);
+        imagen.add(campoContrasena);
+        imagen.add(acceder);
+        imagen.add(nameUser);
+        imagen.add(campoUsuario);
+        imagen.add(contrasena);
         
         return panel;
 }
