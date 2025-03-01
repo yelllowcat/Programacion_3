@@ -34,7 +34,7 @@ public class Ventana extends JFrame{
 
         public JPanel Calculadora(){
             JPanel mipanel = new JPanel();
-            mipanel.setLayout(new BorderLayout());
+            mipanel.setLayout(new BorderLayout(20,20));
             mipanel.setBackground(Color.GRAY);
             mipanel.setOpaque(true);
             
@@ -53,7 +53,7 @@ public class Ventana extends JFrame{
             
             JPanel botones2= new JPanel();
             botones2.setBackground(Color.gray);
-            botones2.setLayout(new GridLayout(6,1));
+            botones2.setLayout(new GridLayout(6,1,5,5));
 
             
             
