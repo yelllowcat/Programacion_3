@@ -1,98 +1,104 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package javaapplication1;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.GrayFilter;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
- *
- * @author david
- */
-public class Ventana extends JFrame{
-    
-    
-     public Ventana(String titulo){
-         this.setTitle(titulo);
-         this.setSize(400, 500);
-         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-         this.add(Calculadora());
-         this.setVisible(true);
-         
+public class Ventana extends JFrame {
 
-     }
+	public Ventana(){
+		// TODO Auto-generated constructor stub
+		this.setSize(500,500);
+	//	this.dibujoCasa();
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setVisible(true);
 
-        public JPanel Calculadora(){
-            JPanel mipanel = new JPanel();
-            mipanel.setLayout(new BorderLayout());
-            mipanel.setBackground(Color.GRAY);
-            mipanel.setOpaque(true);
-            
-            JLabel label = new JLabel();
-            label.setBackground(Color.WHITE);
-            label.setPreferredSize(new Dimension(400, 50));
-            label.setOpaque(true);
-            
-            mipanel.add(label,BorderLayout.NORTH);
-            
-            JPanel botones = new JPanel();
-            botones.setBackground(Color.gray);
-            botones.setLayout(new GridLayout(4,3,10,10));
-            
-            mipanel.add(botones,BorderLayout.CENTER);
-            
-            JPanel botones2= new JPanel();
-            botones2.setBackground(Color.gray);
-            botones2.setLayout(new GridLayout(6,1));
+	}
+	public JPanel dibujoCasa() {
+		JPanel miPanel = new JPanel();
+		return miPanel;
+	}
+	
+	public void paint(Graphics g) {
+		super.paint(g);
+		Graphics2D pincel = (Graphics2D) g.create();
+		pincel.setColor(new Color(219, 255, 248));
+		pincel.fillRect(0, 0, 500, 500);				//fondo azul
+		
+		pincel.setColor(new Color(190, 167, 96));
+		pincel.fillRect(0, 310,500, 25);			//valla trasera
+		
+		pincel.setColor(new Color(190, 167, 96));
+		pincel.fillRect(0, 260,500, 25);			//valla trasera
+		
 
-            
-            
-            mipanel.add(botones2,BorderLayout.EAST);
-            
-            JButton[] arregloBotones = new JButton[10];
-            int i=9;
-            for(JButton boton:arregloBotones){
-                
-                boton = new JButton(""+i);
-                i--;
-                botones.add(boton);
-                boton.setBackground(Color.black);
-                boton.setForeground(Color.white);
-            }
-            JButton botonDot= new JButton(".");
-            botones.add(botonDot);
-            botonDot.setBackground(Color.black);
-            botonDot.setForeground(Color.white);
-            
-            JButton[] arregloBotones2 = new JButton[6];
-            
-            for (int j = 0; j < arregloBotones2.length; j++) {
-                arregloBotones2[j]= new JButton();
-                botones2.add(arregloBotones2[j]);
-             arregloBotones2[j].setBackground(Color.yellow);
-            arregloBotones2[j].setForeground(Color.black);
-            }
-            arregloBotones2[0].setText("+");
-            arregloBotones2[1].setText("-");
-            arregloBotones2[2].setText("*");
-            arregloBotones2[3].setText("/");
-            arregloBotones2[4].setText("=");
-            arregloBotones2[5].setText("CE");
-            
+		pincel.setColor(new Color(227, 200, 116)); //valla delantera
+		pincel.fillRect(0, 230,25, 160);
+		
+		pincel.setColor(new Color(227, 200, 116)); // valla delantera
+		pincel.fillRect(40, 230,25, 160);
+		
+		pincel.setColor(new Color(227, 200, 116)); //valla delantera
+		pincel.fillRect(80, 230,25, 160);
+	
+		
 
-            
-            return mipanel;
-        }
-    
-     
+		pincel.setColor(new Color(227, 200, 116));
+		pincel.fillRect(400, 230,25, 160);
+		
+		pincel.setColor(new Color(227, 200, 116));
+		pincel.fillRect(440, 230,25, 160);
+		
+		pincel.setColor(new Color(227, 200, 116));
+		pincel.fillRect(480, 230,25, 160);
+	
+		
+		pincel.setColor(new Color(162,120,88,255)); //suelo cafe
+		pincel.fillRect(0, 485,500, 15);			
+		
+		pincel.setColor(new Color(255, 252, 201)); //suelo crema
+		pincel.fillRect(0, 445,500,40);
+		
+		pincel.setColor(new Color(76, 131, 64)); // suelo verde claro
+		pincel.fillRect(0, 405,500, 40);
+				
+		
+		pincel.setColor(new Color(35, 59, 30)); //suelo verde oscur
+		pincel.fillRect(0, 390,500, 15);
+		
+
+		pincel.setColor(new Color(122, 122, 122)); //chimenea
+		pincel.fillRect(290, 80,50, 70);
+	
+		
+		pincel.setColor(new Color(122, 122, 122)); //base casa gris
+		pincel.fillRect(100, 330,300, 60);
+		
+		pincel.setColor(new Color(232, 211, 77)); // casa anarukka
+		pincel.fillRect(110, 150,280, 180);
+		
+		pincel.setColor(new Color(100, 70, 5));  //puerta
+		pincel.fillRect(150, 170,70, 160);
+		
+		pincel.setColor(new Color(168, 231, 220)); //ventana
+		pincel.fillRect(270, 180,80, 80);
+		
+		int[] x= {100,165,410};
+		int[] y= {150,40,150};
+		pincel.setColor(new Color(255, 0, 0)); // techo
+		pincel.fillPolygon(x, y, 3);
+		
+		
+		
+		
+		
+		
+		//
+		
+
+	}
 }

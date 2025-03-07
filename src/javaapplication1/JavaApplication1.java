@@ -12,7 +12,7 @@ public class JavaApplication1 {
 
     public static void main(String[] args) {
 
-        Ventana ventana = new Ventana("Calculadora");
+        Ventana ventana = new Ventana();
         
     }
     
