@@ -25,159 +25,73 @@ public class Ventana extends JFrame {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D pincel = (Graphics2D) g.create();
-		
-
-		
-		
-		pincel.setColor(new Color(38, 88, 156));
+	
+		pincel.setColor(new Color(162, 240, 255));
 		pincel.fillRect(0, 0, 500, 500);				//fondo 
 		
+		pincel.setColor(new Color(177, 111, 59));
+		pincel.fillRect(20, 450, 500, 50);				//fondo 
 		
-		
-		pincel.setColor(new Color(175, 162, 106));
-		pincel.fillRect(0, 450, 500, 50);				//fondo 
-		
-		
-		pincel.setColor(new Color(255, 255, 255));  //color nube
-
-		pincel.fillRoundRect(160, 360, 120, 25, 30, 30);
-		pincel.fillRoundRect(60, 385, 120, 25, 30, 30); //nubes fondo izquierda
-		pincel.fillRoundRect(170, 410, 120, 25, 30, 30);
-		
-		 //nubes derecha
-		pincel.fillRoundRect(400, 360, 80, 25, 30, 30);
-		pincel.fillRoundRect(390, 200, 80, 25, 30, 40);
-		pincel.fillRoundRect(370, 225, 80, 25, 30, 30);
-
-		
-		pincel.setColor(new Color(80, 208, 67));
-		pincel.fillRect(0, 430, 500, 20);	
-		
-
-		
-		pincel.setColor(new Color(208, 245, 247));
-		pincel.fillRect(210, 240, 90, 190);	//tubo2
-		pincel.fillOval(210, 210, 90, 50);
-		
-		pincel.fillRect(300, 170, 90, 260);	//tubo2
-		pincel.fillOval(300, 140, 90, 50);
-		
-		pincel.fillRect(20, 240, 90, 190);	//tubo2
-		pincel.fillOval(20, 210, 90, 50);
-		
-		
-		pincel.setColor(new Color(116, 158, 255));
-		pincel.fillRect(-30, 380, 90, 50);			//tubo1
-		
-		pincel.fillOval(-30, 350, 90, 50);
+		pincel.setColor(new Color(252, 149, 89)); //fondo3
+		pincel.fillRect(20, 430, 500, 20);	
 			
+		pincel.setColor(new Color(113, 194, 255));
+		pincel.fillRect(150, 300, 90, 130);
 		
-		pincel.fillRect(210, 380, 120, 50);	//tubo2
+		pincel.setColor(new Color(255, 192, 181));
+		pincel.fillRect(100, 340, 90, 90);	
 		
-		pincel.fillOval(210, 350, 120, 50);
+		pincel.setColor(new Color(0, 124, 0));
+		pincel.fillRect(330, 350, 60, 80);
 		
-		pincel.setColor(new Color(255, 255, 255));      //nube detras de cubos
-		pincel.fillRoundRect(270, 325, 80, 25, 40, 40);
-		
-		
-		pincel.setColor(new Color(116, 158, 255));
+		pincel.setColor(new Color(0, 124, 0));
+		pincel.fillRect(320, 330, 80, 30);
 
-		pincel.fillRect(330, 310, 120, 120);	//tub3
-		pincel.fillOval(330, 280, 120, 50);
+		pincel.setStroke(new BasicStroke(3));
+		pincel.setColor(new Color(99, 61, 32));
+		pincel.drawLine(20, 450, 500, 450);
 		
+		pincel.drawLine(20, 470, 500, 470);
 		
+		pincel.drawLine(20, 490, 500, 490);
 		
-		pincel.fillRect(480, 350, 90, 80);	//tubo4
+		pincel.drawLine(20, 500, 20, 450);
+		pincel.drawLine(40, 500, 40, 450);
+		pincel.drawLine(60, 500, 60, 450);
+		pincel.drawLine(80, 500, 80, 450);
+		pincel.drawLine(100, 500, 100, 450);
+		pincel.drawLine(120, 500, 120, 450);
+		pincel.drawLine(140, 500, 140, 450);
+		pincel.drawLine(160, 500, 160, 450);
+		pincel.drawLine(180, 500, 180, 450);
+		pincel.drawLine(200, 500, 200, 450);
+		pincel.drawLine(220, 500, 220, 450);
+		pincel.drawLine(240, 500, 240, 450);
+		pincel.drawLine(260, 500, 260, 450);
+		pincel.drawLine(280, 500, 280, 450);
+		pincel.drawLine(300, 500, 300, 450);
+		pincel.drawLine(320, 500, 320, 450);
+		pincel.drawLine(340, 500, 340, 450);
+		pincel.drawLine(360, 500, 360, 450);
+		pincel.drawLine(380, 500, 380, 450);
+		pincel.drawLine(400, 500, 400, 450);
+		pincel.drawLine(420, 500, 420, 450);
+		pincel.drawLine(440, 500, 440, 450);
+		pincel.drawLine(460, 500, 460, 450);
+		pincel.drawLine(480, 500, 480, 450);
+
+		pincel.setColor(new Color(255, 137, 84));
+		pincel.fillRect(120, 60, 50, 50);
+		pincel.fillRect(170, 60, 50, 50);
+		pincel.fillRect(50, 140, 50, 50);
 		
-		pincel.fillOval(480, 320, 90, 50);
-		
-		
-		pincel.setColor(new Color(255, 255, 255));      //nube detras de cubos
-		pincel.fillRoundRect(400, 415, 80, 25, 40, 40);
-		
-		pincel.setColor(new Color(80, 208, 67));
-		pincel.fillRect(0, 430, 500, 20);	
-		
-		pincel.setColor(new Color(118, 102, 162)); //tuberia
-		pincel.fillRect(250, 380, 50, 50);
-		
-		pincel.fillRect(245, 360, 60, 20);
-		
+
+		pincel.fillOval(20, 380, 70, 50);
+		pincel.setColor(new Color(33, 131, 4));
+		pincel.setColor(new Color(0, 0, 0));
 		pincel.setStroke(new BasicStroke(2));
-		pincel.setColor(Color.black); //tuberia contorno
-		pincel.drawRect(250, 380, 50, 50);
-		
-		pincel.drawRect(245, 360, 60, 20);
-		
 
-		pincel.setColor(new Color(118, 102, 162)); //tuberia
-		pincel.fillRect(470, 400, 50, 30);
-		
-		pincel.fillRect(465, 380, 60, 20);
-		
-		pincel.setStroke(new BasicStroke(2));
-		pincel.setColor(Color.black); //tuberia contorno
-		pincel.drawRect(470, 400, 50, 30);
-		
-		pincel.drawRect(465, 380, 60, 20);
-		
-		pincel.setColor(new Color(210, 210, 210));
-		pincel.fillRect(440, 410, 20, 20);
-		
-		pincel.fillRect(440, 390, 20, 20);
-
-		pincel.fillRect(440, 370, 20, 20);
-		
-		pincel.fillRect(440, 350, 20, 20);
-		pincel.setColor(new Color(255, 255, 0)); 
-
-		pincel.fillRect(460, 350, 20, 20);
-
-		pincel.fillRect(480, 350, 20, 20);
-
-		pincel.setStroke(new BasicStroke(2));
-		pincel.setColor(Color.black); //contorno bloques grises
-		
-		pincel.drawLine(466, 357, 466, 362);
-		pincel.drawLine(474, 357, 474, 362);;
-
-		
-		pincel.drawRect(440, 410, 20, 20);
-		
-		pincel.drawRect(440, 390, 20, 20);
-
-		pincel.drawRect(440, 370, 20, 20);
-		
-		pincel.drawRect(440, 350, 20, 20);
-
-		pincel.drawRect(460, 350, 20, 20);
-
-		pincel.drawRect(480, 350, 20, 20);
-		
-		pincel.setColor(new Color(255, 255, 255)); 
-
-	//	pincel.fillOval(-60, 300, 150, 30);
-		
-		pincel.fillRoundRect(110, 300, 140, 25, 30, 30);
-		
-		pincel.fillRoundRect(-40, 260, 120, 25, 30, 30);
-		
-		//puntos
-		pincel.fillOval(70, 290, 15, 20);
-		pincel.fillOval(70, 230, 15, 20);
-		pincel.fillOval(40, 320, 15, 20);
-		pincel.fillOval(55, 260, 15, 20);
-		pincel.fillOval(260, 230, 15, 20);
-		pincel.fillOval(230, 275, 15, 20);
-		pincel.fillOval(230, 330, 15, 20);
-		pincel.fillOval(320, 230, 15, 20);
-		pincel.fillOval(350, 170, 15, 20);
-		pincel.fillOval(350, 300, 15, 20);
-		pincel.fillOval(400, 390, 15, 20);
-
-	
-
-
+		pincel.drawLine(170, 60, 170, 110);
 
 
 	}
