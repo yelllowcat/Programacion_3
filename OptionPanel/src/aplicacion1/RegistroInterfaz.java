@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class RegistroInterfaz {
     public static void main(String[] args) {
-        
+         
         JFrame frame = new JFrame("Registro");
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
