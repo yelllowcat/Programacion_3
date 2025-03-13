@@ -1,4 +1,4 @@
-package interfazgpt;
+package javaapplication1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ public class RegistroInterfaz {
         JTextField txtUsuario = new JTextField();
         txtUsuario.setBounds(150, 50, 200, 30);
         frame.add(txtUsuario);
-
+        
         JLabel lblContraseña = new JLabel("Contraseña:");
         lblContraseña.setBounds(50, 100, 100, 30);
         frame.add(lblContraseña);
