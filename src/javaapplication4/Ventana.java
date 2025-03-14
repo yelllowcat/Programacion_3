@@ -1,98 +1,282 @@
 package javaapplication4;
 
-import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.Stroke;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
-import javax.swing.GrayFilter;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
-public class Ventana extends JFrame {
 
-	public Ventana(){
-		// TODO Auto-generated constructor stub
-		this.setSize(500,500);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+public class Ventana extends JFrame{
+
+	public Ventana() {
+		
 		this.setVisible(true);
-
-	}
-
-	
-	public void paint(Graphics g) {
-		super.paint(g);
-		Graphics2D pincel = (Graphics2D) g.create();
-	
-		pincel.setColor(new Color(162, 240, 255));
-		pincel.fillRect(0, 0, 500, 500);				//fondo 
+		this.setSize(400, 600);
+		this.setLocationRelativeTo(null);
 		
-		pincel.setColor(new Color(177, 111, 59));
-		pincel.fillRect(20, 450, 500, 50);				//fondo 
+		this.setTitle("Login");
 		
-		pincel.setColor(new Color(252, 149, 89)); //fondo3
-		pincel.fillRect(20, 430, 500, 20);	
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		this.setResizable(true); 
+		
+		this.setMaximumSize(new Dimension(800,800));
+		this.setMinimumSize(new Dimension(400,400));
+		
+		this.add(this.login());
+		//this.add(this.calculadora());
+		
+	
+		
+		//barra
+		JMenuBar barra = new JMenuBar();
+		
+		JMenu file = new JMenu("Archivo");
+		barra.add(file);
+		
+		JMenuItem open = new JMenuItem("Abrir");
+		file.add(open);
+		
+		JMenuItem close = new JMenuItem("Cerrar");
+		file.add(close);
+		
+		JMenuItem op_2 = new JMenuItem("Guardar");
+		file.add(op_2);
+		
+		JMenuItem op_3 = new JMenuItem("Guardar como");
+		file.add(op_3);
+		
+		JMenu menu_2 = new JMenu("Ayuda");
+		barra.add(menu_2);
+		
+		JMenu menu3 = new JMenu("Cambiar");
+		barra.add(menu3);
+		JMenuItem log = new JMenuItem("login");
+		menu3.add(log);
+		JMenuItem reg = new JMenuItem("registro");
+		menu3.add(reg);
+		
+		
+		
+		JMenuItem op_4 = new JMenuItem("Manual de usuario");
+		menu_2.add(op_4);
+		
+		JCheckBoxMenuItem op_5 = new JCheckBoxMenuItem("Hola");
+		menu_2.add(op_5);
+		
+		this.setJMenuBar(barra);
+		
+		log.addActionListener(new ActionListener() {
 			
-		pincel.setColor(new Color(113, 194, 255));
-		pincel.fillRect(150, 300, 90, 130);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+			}
+		});
 		
-		pincel.setColor(new Color(255, 192, 181));
-		pincel.fillRect(100, 340, 90, 90);	
+		reg.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("register");
+			}
+		}); 
+		   
 		
-		pincel.setColor(new Color(0, 124, 0));
-		pincel.fillRect(330, 350, 60, 80);
 		
-		pincel.setColor(new Color(0, 124, 0));
-		pincel.fillRect(320, 330, 80, 30);
-
-		pincel.setStroke(new BasicStroke(3));
-		pincel.setColor(new Color(99, 61, 32));
-		pincel.drawLine(20, 450, 500, 450);
-		
-		pincel.drawLine(20, 470, 500, 470);
-		
-		pincel.drawLine(20, 490, 500, 490);
-		
-		pincel.drawLine(20, 500, 20, 450);
-		pincel.drawLine(40, 500, 40, 450);
-		pincel.drawLine(60, 500, 60, 450);
-		pincel.drawLine(80, 500, 80, 450);
-		pincel.drawLine(100, 500, 100, 450);
-		pincel.drawLine(120, 500, 120, 450);
-		pincel.drawLine(140, 500, 140, 450);
-		pincel.drawLine(160, 500, 160, 450);
-		pincel.drawLine(180, 500, 180, 450);
-		pincel.drawLine(200, 500, 200, 450);
-		pincel.drawLine(220, 500, 220, 450);
-		pincel.drawLine(240, 500, 240, 450);
-		pincel.drawLine(260, 500, 260, 450);
-		pincel.drawLine(280, 500, 280, 450);
-		pincel.drawLine(300, 500, 300, 450);
-		pincel.drawLine(320, 500, 320, 450);
-		pincel.drawLine(340, 500, 340, 450);
-		pincel.drawLine(360, 500, 360, 450);
-		pincel.drawLine(380, 500, 380, 450);
-		pincel.drawLine(400, 500, 400, 450);
-		pincel.drawLine(420, 500, 420, 450);
-		pincel.drawLine(440, 500, 440, 450);
-		pincel.drawLine(460, 500, 460, 450);
-		pincel.drawLine(480, 500, 480, 450);
-
-		pincel.setColor(new Color(255, 137, 84));
-		pincel.fillRect(120, 60, 50, 50);
-		pincel.fillRect(170, 60, 50, 50);
-		pincel.fillRect(50, 140, 50, 50);
-		
-
-		pincel.fillOval(20, 380, 70, 50);
-		pincel.setColor(new Color(33, 131, 4));
-		pincel.setColor(new Color(0, 0, 0));
-		pincel.setStroke(new BasicStroke(2));
-
-		pincel.drawLine(170, 60, 170, 110);
-
-
+		this.repaint();
+		this.revalidate();
 	}
+	
+	
+	public JPanel login()
+	{
+		
+		Font fuente = new Font("American Typewriter",Font.BOLD,20);
+		
+		JPanel mipanel = new JPanel();
+
+		mipanel.setBackground(Color.decode("#48cae4"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(400, 400);
+		mipanel.setLocation(0, 0);
+		mipanel.setLayout(null); //quita el molde
+		
+		JLabel etiqueta1 = new JLabel("Bienvenido");
+		etiqueta1.setSize(200, 30);
+		etiqueta1.setLocation(120, 30);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("American Typewriter",Font.BOLD,24)); 
+		mipanel.add(etiqueta1);
+		
+		
+		JLabel etiqueta2 = new JLabel("Ingrese su email: ");
+		etiqueta2.setSize(200, 30);
+		etiqueta2.setLocation(40, 130);
+		etiqueta2.setFont(fuente);
+		mipanel.add(etiqueta2);
+		
+		JTextField email = new JTextField();
+		email.setSize(300, 30);
+		email.setLocation(38, 160);
+		email.setFont(fuente);
+		mipanel.add(email);
+		
+		JLabel password_tag = new JLabel("Ingrese su contraseña: ");
+		password_tag.setSize(250, 30);
+		password_tag.setLocation(40, 210);
+		password_tag.setFont(fuente);
+		mipanel.add(password_tag);
+		
+		JPasswordField password = new JPasswordField();
+		password.setBounds(38, 240, 300, 30);
+		password.setFont(fuente);
+		mipanel.add(password);
+		
+		JCheckBox terms = new JCheckBox("Acepto los términos",false);
+		terms.setSize(250, 30);
+		terms.setLocation(40, 280); 
+		mipanel.add(terms);
+		
+		JLabel forgot_tag = new JLabel("¿Olvidó su contraseña?");
+		forgot_tag.setSize(250, 30);
+		forgot_tag.setLocation(200, 310); 
+		mipanel.add(forgot_tag);
+		
+		JButton access = new JButton("ACCEDER");
+		access.setBounds(100, 350, 200, 50);
+		access.setFont(fuente);
+		access.setOpaque(true);
+		access.setBackground(Color.red);
+		mipanel.add(access);
+		
+		JButton registro = new JButton("Ir a Registro");
+		registro.setBounds(100, 430, 200, 50);
+		registro.setFont(fuente);
+		registro.setOpaque(true);
+		registro.setBackground(Color.red);
+		mipanel.add(registro);
+		
+		registro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				router("register");
+			}
+		});
+		
+		
+		return mipanel;
+	}
+	public void router(String route) {
+		this.getContentPane().removeAll();
+		if (route.equals("register")) {
+			this.add(this.registro());
+		}
+		if (route.equals("login")) {
+			this.add(this.login());
+	}
+		
+		this.validate();
+		this.repaint();
+	}
+
+ 	public JPanel registro()
+	{
+		Font fuente = new Font("American Typewriter",Font.BOLD,20);
+		
+		JPanel mipanel = new JPanel();
+
+		mipanel.setBackground(Color.decode("#01092"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(400, 400);
+		mipanel.setLocation(0, 0);
+		mipanel.setLayout(null); //quita el molde
+		
+		JLabel etiqueta1 = new JLabel("Registro");
+		etiqueta1.setSize(200, 30);
+		etiqueta1.setLocation(120, 30);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("American Typewriter",Font.BOLD,24)); 
+		mipanel.add(etiqueta1);
+		
+		
+		JLabel etiqueta2 = new JLabel("Ingrese su email: ");
+		etiqueta2.setSize(200, 30);
+		etiqueta2.setLocation(40, 130);
+		etiqueta2.setFont(fuente);
+		mipanel.add(etiqueta2);
+		
+		JTextField email = new JTextField();
+		email.setSize(300, 30);
+		email.setLocation(38, 160);
+		email.setFont(fuente);
+		mipanel.add(email);
+		
+		JLabel password_tag = new JLabel("Ingrese su contraseña: ");
+		password_tag.setSize(250, 30);
+		password_tag.setLocation(40, 210);
+		password_tag.setFont(fuente);
+		mipanel.add(password_tag);
+		
+		JPasswordField password = new JPasswordField();
+		password.setBounds(38, 240, 300, 30);
+		password.setFont(fuente);
+		mipanel.add(password);
+		
+		JCheckBox terms = new JCheckBox("Acepto los términos",false);
+		terms.setSize(250, 30);
+		terms.setLocation(40, 280); 
+		mipanel.add(terms);
+		
+		JLabel forgot_tag = new JLabel("¿Olvidó su contraseña?");
+		forgot_tag.setSize(250, 30);
+		forgot_tag.setLocation(200, 310); 
+		mipanel.add(forgot_tag);
+		
+		JButton access = new JButton("ACCEDER");
+		access.setBounds(100, 350, 200, 50);
+		access.setFont(fuente);
+		access.setOpaque(true);
+		access.setBackground(Color.red);
+		mipanel.add(access);
+		
+		JButton btnAcceder = new JButton("Ir a Login");
+		btnAcceder.setBounds(100, 430, 200, 50);
+		btnAcceder.setFont(fuente);
+		btnAcceder.setOpaque(true);
+		btnAcceder.setBackground(Color.red);
+		mipanel.add(btnAcceder);
+		
+		btnAcceder.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+			}
+		});
+		
+		return mipanel;
+	}
+
 }
