@@ -43,46 +43,47 @@ public class Ventana extends JFrame{
 		this.setMinimumSize(new Dimension(400,400));
 		
 		this.add(this.login());
-		//this.add(this.calculadora());
+		
 		
 	
 		
 		//barra
 		JMenuBar barra = new JMenuBar();
 		
-		JMenu file = new JMenu("Archivo");
+		JMenu file = new JMenu("Cuenta");
 		barra.add(file);
+                JMenuItem log = new JMenuItem("login");
+		file.add(log);
+		JMenuItem reg = new JMenuItem("registro");
+		file.add(reg);
+		JMenuItem recuperacion= new JMenuItem("Recuperacion de cuenta");
+		file.add(recuperacion);
 		
-		JMenuItem open = new JMenuItem("Abrir");
-		file.add(open);
-		
-		JMenuItem close = new JMenuItem("Cerrar");
-		file.add(close);
-		
-		JMenuItem op_2 = new JMenuItem("Guardar");
-		file.add(op_2);
-		
-		JMenuItem op_3 = new JMenuItem("Guardar como");
-		file.add(op_3);
-		
-		JMenu menu_2 = new JMenu("Ayuda");
+		JMenu menu_2 = new JMenu("Usuarios");
 		barra.add(menu_2);
 		
-		JMenu menu3 = new JMenu("Cambiar");
+		
+		JMenuItem alta = new JMenuItem("Alta");
+		menu_2.add(alta);
+		JMenuItem baja = new JMenuItem("Baja");
+		menu_2.add(baja);
+		JMenuItem consultar = new JMenuItem("Consultar");
+		menu_2.add(consultar);
+		
+		
+                JMenu menu3 = new JMenu("Ayuda");
 		barra.add(menu3);
-		JMenuItem log = new JMenuItem("login");
-		menu3.add(log);
-		JMenuItem reg = new JMenuItem("registro");
-		menu3.add(reg);
 		
-		
-		
-		JMenuItem op_4 = new JMenuItem("Manual de usuario");
-		menu_2.add(op_4);
-		
-		JCheckBoxMenuItem op_5 = new JCheckBoxMenuItem("Hola");
-		menu_2.add(op_5);
-		
+                
+		JMenuItem crear = new JMenuItem("¿Cómo crear un usuario?");
+		menu3.add(crear);
+		JMenuItem acceder = new JMenuItem("¿Cómo acceder al sistema?");
+		menu3.add(acceder);
+		JMenuItem olvidar = new JMenuItem("¿Qué pasa si olvidé mi contraseña?");
+		menu3.add(olvidar);
+                
+                
+                
 		this.setJMenuBar(barra);
 		
 		log.addActionListener(new ActionListener() {
@@ -100,7 +101,55 @@ public class Ventana extends JFrame{
 				router("register");
 			}
 		}); 
-		   
+                recuperacion.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        router("recuperacion");
+                    }
+                }
+                );
+                
+               alta.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        router("alta");
+                    }
+               });
+               
+               baja.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        router("baja");
+                    }
+               });
+		  consultar.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        router("consultar");
+                    }
+                  });
+                  
+                  crear.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        router("crear");
+                    }
+                    
+                  });
+                  
+                  acceder.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        router("acceder");
+                    }
+                  });
+                  
+                  olvidar.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        router("olvidar");
+                    }
+                  });
 		
 		
 		this.repaint();
