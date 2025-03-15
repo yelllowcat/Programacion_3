@@ -125,7 +125,7 @@ public class Ventana extends JFrame{
 		  consultar.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent ae) {
-                        router("consultar");
+                        router("consulta");
                     }
                   });
                   
@@ -245,6 +245,29 @@ public class Ventana extends JFrame{
 		if (route.equals("login")) {
 			this.add(this.login());
 	}
+                if (route.equals("recuperacion")) {
+			this.add(this.recuperacion());
+	}
+                 if (route.equals("alta")) {
+			this.add(this.alta());
+	}
+                  if (route.equals("baja")) {
+			this.add(this.baja());
+	}
+                   if (route.equals("consulta")) {
+			this.add(this.consulta());
+	}
+                    if (route.equals("crear")) {
+			this.add(this.crear());
+	}
+                     if (route.equals("acceder")) {
+			this.add(this.acceder());
+	}
+                      if (route.equals("olvidar")) {
+			this.add(this.olvidar());
+	}
+                      
+                      
 		
 		this.validate();
 		this.repaint();
@@ -327,5 +350,566 @@ public class Ventana extends JFrame{
 		
 		return mipanel;
 	}
+        
+	public JPanel recuperacion()
+	{
+		
+		Font fuente = new Font("American Typewriter",Font.BOLD,20);
+		
+		JPanel mipanel = new JPanel();
 
+		mipanel.setBackground(Color.decode("000000"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(400, 400);
+		mipanel.setLocation(0, 0);
+		mipanel.setLayout(null); //quita el molde
+		
+		JLabel etiqueta1 = new JLabel("Recuperacion");
+		etiqueta1.setSize(200, 30);
+		etiqueta1.setLocation(120, 30);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("American Typewriter",Font.BOLD,24)); 
+		mipanel.add(etiqueta1);
+		
+		
+		JLabel etiqueta2 = new JLabel("Ingrese su email: ");
+		etiqueta2.setSize(200, 30);
+		etiqueta2.setLocation(40, 130);
+		etiqueta2.setFont(fuente);
+		mipanel.add(etiqueta2);
+		
+		JTextField email = new JTextField();
+		email.setSize(300, 30);
+		email.setLocation(38, 160);
+		email.setFont(fuente);
+		mipanel.add(email);
+		
+		JLabel password_tag = new JLabel("Ingrese su contraseña: ");
+		password_tag.setSize(250, 30);
+		password_tag.setLocation(40, 210);
+		password_tag.setFont(fuente);
+		mipanel.add(password_tag);
+		
+		JPasswordField password = new JPasswordField();
+		password.setBounds(38, 240, 300, 30);
+		password.setFont(fuente);
+		mipanel.add(password);
+		
+		JCheckBox terms = new JCheckBox("Acepto los términos",false);
+		terms.setSize(250, 30);
+		terms.setLocation(40, 280); 
+		mipanel.add(terms);
+		
+		JLabel forgot_tag = new JLabel("¿Olvidó su contraseña?");
+		forgot_tag.setSize(250, 30);
+		forgot_tag.setLocation(200, 310); 
+		mipanel.add(forgot_tag);
+		
+		JButton access = new JButton("ACCEDER");
+		access.setBounds(100, 350, 200, 50);
+		access.setFont(fuente);
+		access.setOpaque(true);
+		access.setBackground(Color.red);
+		mipanel.add(access);
+		
+		JButton registro = new JButton("Ir a Registro");
+		registro.setBounds(100, 430, 200, 50);
+		registro.setFont(fuente);
+		registro.setOpaque(true);
+		registro.setBackground(Color.red);
+		mipanel.add(registro);
+		
+		registro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				router("register");
+			}
+		});
+		
+		
+		return mipanel;
+	}
+        
+        public JPanel alta()
+	{
+		
+		Font fuente = new Font("American Typewriter",Font.BOLD,20);
+		
+		JPanel mipanel = new JPanel();
+
+		mipanel.setBackground(Color.decode("262626"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(400, 400);
+		mipanel.setLocation(0, 0);
+		mipanel.setLayout(null); //quita el molde
+		
+		JLabel etiqueta1 = new JLabel("Alta");
+		etiqueta1.setSize(200, 30);
+		etiqueta1.setLocation(120, 30);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("American Typewriter",Font.BOLD,24)); 
+		mipanel.add(etiqueta1);
+		
+		
+		JLabel etiqueta2 = new JLabel("Ingrese su email: ");
+		etiqueta2.setSize(200, 30);
+		etiqueta2.setLocation(40, 130);
+		etiqueta2.setFont(fuente);
+		mipanel.add(etiqueta2);
+		
+		JTextField email = new JTextField();
+		email.setSize(300, 30);
+		email.setLocation(38, 160);
+		email.setFont(fuente);
+		mipanel.add(email);
+		
+		JLabel password_tag = new JLabel("Ingrese su contraseña: ");
+		password_tag.setSize(250, 30);
+		password_tag.setLocation(40, 210);
+		password_tag.setFont(fuente);
+		mipanel.add(password_tag);
+		
+		JPasswordField password = new JPasswordField();
+		password.setBounds(38, 240, 300, 30);
+		password.setFont(fuente);
+		mipanel.add(password);
+		
+		JCheckBox terms = new JCheckBox("Acepto los términos",false);
+		terms.setSize(250, 30);
+		terms.setLocation(40, 280); 
+		mipanel.add(terms);
+		
+		JLabel forgot_tag = new JLabel("¿Olvidó su contraseña?");
+		forgot_tag.setSize(250, 30);
+		forgot_tag.setLocation(200, 310); 
+		mipanel.add(forgot_tag);
+		
+		JButton access = new JButton("ACCEDER");
+		access.setBounds(100, 350, 200, 50);
+		access.setFont(fuente);
+		access.setOpaque(true);
+		access.setBackground(Color.red);
+		mipanel.add(access);
+		
+		JButton registro = new JButton("Ir a Registro");
+		registro.setBounds(100, 430, 200, 50);
+		registro.setFont(fuente);
+		registro.setOpaque(true);
+		registro.setBackground(Color.red);
+		mipanel.add(registro);
+		
+		registro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				router("register");
+			}
+		});
+		
+		
+		return mipanel;
+	}
+        public JPanel baja()
+	{
+		
+		Font fuente = new Font("American Typewriter",Font.BOLD,20);
+		
+		JPanel mipanel = new JPanel();
+
+		mipanel.setBackground(Color.decode("808080"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(400, 400);
+		mipanel.setLocation(0, 0);
+		mipanel.setLayout(null); //quita el molde
+		
+		JLabel etiqueta1 = new JLabel("Baja");
+		etiqueta1.setSize(200, 30);
+		etiqueta1.setLocation(120, 30);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("American Typewriter",Font.BOLD,24)); 
+		mipanel.add(etiqueta1);
+		
+		
+		JLabel etiqueta2 = new JLabel("Ingrese su email: ");
+		etiqueta2.setSize(200, 30);
+		etiqueta2.setLocation(40, 130);
+		etiqueta2.setFont(fuente);
+		mipanel.add(etiqueta2);
+		
+		JTextField email = new JTextField();
+		email.setSize(300, 30);
+		email.setLocation(38, 160);
+		email.setFont(fuente);
+		mipanel.add(email);
+		
+		JLabel password_tag = new JLabel("Ingrese su contraseña: ");
+		password_tag.setSize(250, 30);
+		password_tag.setLocation(40, 210);
+		password_tag.setFont(fuente);
+		mipanel.add(password_tag);
+		
+		JPasswordField password = new JPasswordField();
+		password.setBounds(38, 240, 300, 30);
+		password.setFont(fuente);
+		mipanel.add(password);
+		
+		JCheckBox terms = new JCheckBox("Acepto los términos",false);
+		terms.setSize(250, 30);
+		terms.setLocation(40, 280); 
+		mipanel.add(terms);
+		
+		JLabel forgot_tag = new JLabel("¿Olvidó su contraseña?");
+		forgot_tag.setSize(250, 30);
+		forgot_tag.setLocation(200, 310); 
+		mipanel.add(forgot_tag);
+		
+		JButton access = new JButton("ACCEDER");
+		access.setBounds(100, 350, 200, 50);
+		access.setFont(fuente);
+		access.setOpaque(true);
+		access.setBackground(Color.red);
+		mipanel.add(access);
+		
+		JButton registro = new JButton("Ir a Registro");
+		registro.setBounds(100, 430, 200, 50);
+		registro.setFont(fuente);
+		registro.setOpaque(true);
+		registro.setBackground(Color.red);
+		mipanel.add(registro);
+		
+		registro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				router("register");
+			}
+		});
+		
+		
+		return mipanel;
+	}
+        public JPanel consulta()
+	{
+		
+		Font fuente = new Font("American Typewriter",Font.BOLD,20);
+		
+		JPanel mipanel = new JPanel();
+
+		mipanel.setBackground(Color.decode("101010"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(400, 400);
+		mipanel.setLocation(0, 0);
+		mipanel.setLayout(null); //quita el molde
+		
+		JLabel etiqueta1 = new JLabel("Consulta");
+		etiqueta1.setSize(200, 30);
+		etiqueta1.setLocation(120, 30);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("American Typewriter",Font.BOLD,24)); 
+		mipanel.add(etiqueta1);
+		
+		
+		JLabel etiqueta2 = new JLabel("Ingrese su email: ");
+		etiqueta2.setSize(200, 30);
+		etiqueta2.setLocation(40, 130);
+		etiqueta2.setFont(fuente);
+		mipanel.add(etiqueta2);
+		
+		JTextField email = new JTextField();
+		email.setSize(300, 30);
+		email.setLocation(38, 160);
+		email.setFont(fuente);
+		mipanel.add(email);
+		
+		JLabel password_tag = new JLabel("Ingrese su contraseña: ");
+		password_tag.setSize(250, 30);
+		password_tag.setLocation(40, 210);
+		password_tag.setFont(fuente);
+		mipanel.add(password_tag);
+		
+		JPasswordField password = new JPasswordField();
+		password.setBounds(38, 240, 300, 30);
+		password.setFont(fuente);
+		mipanel.add(password);
+		
+		JCheckBox terms = new JCheckBox("Acepto los términos",false);
+		terms.setSize(250, 30);
+		terms.setLocation(40, 280); 
+		mipanel.add(terms);
+		
+		JLabel forgot_tag = new JLabel("¿Olvidó su contraseña?");
+		forgot_tag.setSize(250, 30);
+		forgot_tag.setLocation(200, 310); 
+		mipanel.add(forgot_tag);
+		
+		JButton access = new JButton("ACCEDER");
+		access.setBounds(100, 350, 200, 50);
+		access.setFont(fuente);
+		access.setOpaque(true);
+		access.setBackground(Color.red);
+		mipanel.add(access);
+		
+		JButton registro = new JButton("Ir a Registro");
+		registro.setBounds(100, 430, 200, 50);
+		registro.setFont(fuente);
+		registro.setOpaque(true);
+		registro.setBackground(Color.red);
+		mipanel.add(registro);
+		
+		registro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				router("register");
+			}
+		});
+		
+		
+		return mipanel;
+	}
+        public JPanel crear()
+	{
+		
+		Font fuente = new Font("American Typewriter",Font.BOLD,20);
+		
+		JPanel mipanel = new JPanel();
+
+		mipanel.setBackground(Color.decode("200200"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(400, 400);
+		mipanel.setLocation(0, 0);
+		mipanel.setLayout(null); //quita el molde
+		
+		JLabel etiqueta1 = new JLabel("Crear");
+		etiqueta1.setSize(200, 30);
+		etiqueta1.setLocation(120, 30);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("American Typewriter",Font.BOLD,24)); 
+		mipanel.add(etiqueta1);
+		
+		
+		JLabel etiqueta2 = new JLabel("Ingrese su email: ");
+		etiqueta2.setSize(200, 30);
+		etiqueta2.setLocation(40, 130);
+		etiqueta2.setFont(fuente);
+		mipanel.add(etiqueta2);
+		
+		JTextField email = new JTextField();
+		email.setSize(300, 30);
+		email.setLocation(38, 160);
+		email.setFont(fuente);
+		mipanel.add(email);
+		
+		JLabel password_tag = new JLabel("Ingrese su contraseña: ");
+		password_tag.setSize(250, 30);
+		password_tag.setLocation(40, 210);
+		password_tag.setFont(fuente);
+		mipanel.add(password_tag);
+		
+		JPasswordField password = new JPasswordField();
+		password.setBounds(38, 240, 300, 30);
+		password.setFont(fuente);
+		mipanel.add(password);
+		
+		JCheckBox terms = new JCheckBox("Acepto los términos",false);
+		terms.setSize(250, 30);
+		terms.setLocation(40, 280); 
+		mipanel.add(terms);
+		
+		JLabel forgot_tag = new JLabel("¿Olvidó su contraseña?");
+		forgot_tag.setSize(250, 30);
+		forgot_tag.setLocation(200, 310); 
+		mipanel.add(forgot_tag);
+		
+		JButton access = new JButton("ACCEDER");
+		access.setBounds(100, 350, 200, 50);
+		access.setFont(fuente);
+		access.setOpaque(true);
+		access.setBackground(Color.red);
+		mipanel.add(access);
+		
+		JButton registro = new JButton("Ir a Registro");
+		registro.setBounds(100, 430, 200, 50);
+		registro.setFont(fuente);
+		registro.setOpaque(true);
+		registro.setBackground(Color.red);
+		mipanel.add(registro);
+		
+		registro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				router("register");
+			}
+		});
+		
+		
+		return mipanel;
+	}
+        public JPanel acceder()
+	{
+		
+		Font fuente = new Font("American Typewriter",Font.BOLD,20);
+		
+		JPanel mipanel = new JPanel();
+
+		mipanel.setBackground(Color.decode("300300"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(400, 400);
+		mipanel.setLocation(0, 0);
+		mipanel.setLayout(null); //quita el molde
+		
+		JLabel etiqueta1 = new JLabel("Acceder");
+		etiqueta1.setSize(200, 30);
+		etiqueta1.setLocation(120, 30);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("American Typewriter",Font.BOLD,24)); 
+		mipanel.add(etiqueta1);
+		
+		
+		JLabel etiqueta2 = new JLabel("Ingrese su email: ");
+		etiqueta2.setSize(200, 30);
+		etiqueta2.setLocation(40, 130);
+		etiqueta2.setFont(fuente);
+		mipanel.add(etiqueta2);
+		
+		JTextField email = new JTextField();
+		email.setSize(300, 30);
+		email.setLocation(38, 160);
+		email.setFont(fuente);
+		mipanel.add(email);
+		
+		JLabel password_tag = new JLabel("Ingrese su contraseña: ");
+		password_tag.setSize(250, 30);
+		password_tag.setLocation(40, 210);
+		password_tag.setFont(fuente);
+		mipanel.add(password_tag);
+		
+		JPasswordField password = new JPasswordField();
+		password.setBounds(38, 240, 300, 30);
+		password.setFont(fuente);
+		mipanel.add(password);
+		
+		JCheckBox terms = new JCheckBox("Acepto los términos",false);
+		terms.setSize(250, 30);
+		terms.setLocation(40, 280); 
+		mipanel.add(terms);
+		
+		JLabel forgot_tag = new JLabel("¿Olvidó su contraseña?");
+		forgot_tag.setSize(250, 30);
+		forgot_tag.setLocation(200, 310); 
+		mipanel.add(forgot_tag);
+		
+		JButton access = new JButton("ACCEDER");
+		access.setBounds(100, 350, 200, 50);
+		access.setFont(fuente);
+		access.setOpaque(true);
+		access.setBackground(Color.red);
+		mipanel.add(access);
+		
+		JButton registro = new JButton("Ir a Registro");
+		registro.setBounds(100, 430, 200, 50);
+		registro.setFont(fuente);
+		registro.setOpaque(true);
+		registro.setBackground(Color.red);
+		mipanel.add(registro);
+		
+		registro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				router("register");
+			}
+		});
+		
+		
+		return mipanel;
+	}
+        public JPanel olvidar()
+	{
+		
+		Font fuente = new Font("American Typewriter",Font.BOLD,20);
+		
+		JPanel mipanel = new JPanel();
+
+		mipanel.setBackground(Color.decode("400400"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(400, 400);
+		mipanel.setLocation(0, 0);
+		mipanel.setLayout(null); //quita el molde
+		
+		JLabel etiqueta1 = new JLabel("Olvidar");
+		etiqueta1.setSize(200, 30);
+		etiqueta1.setLocation(120, 30);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("American Typewriter",Font.BOLD,24)); 
+		mipanel.add(etiqueta1);
+		
+		
+		JLabel etiqueta2 = new JLabel("Ingrese su email: ");
+		etiqueta2.setSize(200, 30);
+		etiqueta2.setLocation(40, 130);
+		etiqueta2.setFont(fuente);
+		mipanel.add(etiqueta2);
+		
+		JTextField email = new JTextField();
+		email.setSize(300, 30);
+		email.setLocation(38, 160);
+		email.setFont(fuente);
+		mipanel.add(email);
+		
+		JLabel password_tag = new JLabel("Ingrese su contraseña: ");
+		password_tag.setSize(250, 30);
+		password_tag.setLocation(40, 210);
+		password_tag.setFont(fuente);
+		mipanel.add(password_tag);
+		
+		JPasswordField password = new JPasswordField();
+		password.setBounds(38, 240, 300, 30);
+		password.setFont(fuente);
+		mipanel.add(password);
+		
+		JCheckBox terms = new JCheckBox("Acepto los términos",false);
+		terms.setSize(250, 30);
+		terms.setLocation(40, 280); 
+		mipanel.add(terms);
+		
+		JLabel forgot_tag = new JLabel("¿Olvidó su contraseña?");
+		forgot_tag.setSize(250, 30);
+		forgot_tag.setLocation(200, 310); 
+		mipanel.add(forgot_tag);
+		
+		JButton access = new JButton("ACCEDER");
+		access.setBounds(100, 350, 200, 50);
+		access.setFont(fuente);
+		access.setOpaque(true);
+		access.setBackground(Color.red);
+		mipanel.add(access);
+		
+		JButton registro = new JButton("Ir a Registro");
+		registro.setBounds(100, 430, 200, 50);
+		registro.setFont(fuente);
+		registro.setOpaque(true);
+		registro.setBackground(Color.red);
+		mipanel.add(registro);
+		
+		registro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				router("register");
+			}
+		});
+		
+		
+		return mipanel;
+	}
 }
