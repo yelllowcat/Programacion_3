@@ -110,7 +110,7 @@ public class Ventana extends JFrame {
 		
 		JButton btnNewButton_16 = new JButton("Reiniciar");
 		panel_1.add(btnNewButton_16);
-		
+		//
 	}
 
 }
