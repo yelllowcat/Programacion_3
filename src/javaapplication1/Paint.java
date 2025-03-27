@@ -68,6 +68,7 @@ public class Paint implements MouseListener, MouseMotionListener{
 		initialize();
 	}
 
+        
 	/**
 	 * Initialize the contents of the frame.
 	 */
