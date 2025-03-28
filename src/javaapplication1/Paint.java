@@ -1,5 +1,4 @@
 package javaapplication1;
-
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -23,8 +22,8 @@ import javax.swing.event.ChangeListener;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
-
 import java.awt.Dimension;
+import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -37,7 +36,13 @@ public class Paint implements MouseListener, MouseMotionListener{
 	private Point lastPoint; // Para almacenar la última posición del mouse
      // Para almacenar los puntos dibujados
 	private List<Point> points = new ArrayList<>();
-	public Stroke stroke = new BasicStroke(3);;
+	private List<Rectangle> figuras = new ArrayList<>();
+	private List<Triangle> triangulos = new ArrayList<>();
+	private List<Circle> circulos = new ArrayList<>();
+
+
+    private int method = 1;
+
     List<List<Point>> listaDePuntos = new ArrayList<>();
     public float grosor=2;
 	/**
@@ -68,7 +73,6 @@ public class Paint implements MouseListener, MouseMotionListener{
 		initialize();
 	}
 
-        
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -101,6 +105,7 @@ public class Paint implements MouseListener, MouseMotionListener{
 		panel_1.add(btnNewButton, BorderLayout.NORTH);
 		
 		JPanel panel_3 = new JPanel();
+                panel_3.setLayout(new GridLayout(5,1,20,10));
 		panel_1.add(panel_3, BorderLayout.CENTER);
 		
 		
@@ -133,6 +138,44 @@ public class Paint implements MouseListener, MouseMotionListener{
 	       
 		panel_3.add(btnNewButton_1);
 		panel_3.add(slider);
+		JButton btnNewButton_2 = new JButton("Rectangulo");
+		btnNewButton_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				method = 2;
+			}
+			
+		});
+		JButton btnNewButton_3 = new JButton("Triangulo");
+		btnNewButton_3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				method = 3;
+			}
+			
+		});
+		JButton btnNewButton_4 = new JButton("Cicle");
+		btnNewButton_4.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				method = 4;
+			}
+			
+		});
+		panel_3.add(btnNewButton_2);
+		panel_3.add(btnNewButton_3);
+		panel_3.add(btnNewButton_4);
+
+
 
 		JPanel panel_4 = new JPanel();
 		panel_1.add(panel_4, BorderLayout.SOUTH);
@@ -154,8 +197,25 @@ public class Paint implements MouseListener, MouseMotionListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub 
-	//	str
+
+		if(method==2) {
+			Rectangle tmp = new Rectangle(e.getX(),e.getY(),100,100);
+			figuras.add(tmp);
+		}
+		
+		
+	
+	if(method==3) {
+		Triangle tmp = new Triangle(e.getX(),e.getY());
+		triangulos.add(tmp);
 	}
+	if(method==4) {
+		Circle tmp = new Circle(e.getX(),e.getY(),100,100);
+		circulos.add(tmp);
+	}
+	
+	drawingPanel.repaint();
+}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -235,8 +295,68 @@ public class Paint implements MouseListener, MouseMotionListener{
 	                g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
 	            }
 	        }
+	        for (Iterator iterator = figuras.iterator(); iterator.hasNext();) {
+				Rectangle rectangle = (Rectangle) iterator.next();
+				
+				g2d.drawRect(rectangle.x, rectangle.y, rectangle.w, rectangle.h);
+				
+			}
+	        for (Iterator iterator = triangulos.iterator(); iterator.hasNext();) {
+				Triangle triangle = (Triangle) iterator.next();
+				
+				g2d.drawPolygon(new int[] {triangle.x, triangle.x+50, triangle.x+100}, new int[] {triangle.y, triangle.y-100, triangle.y}, 3);
+			}
+	        for (Iterator iterator = circulos.iterator(); iterator.hasNext();) {
+				Circle circle = (Circle) iterator.next();
+				
+				g2d.drawOval(circle.x, circle.y, circle.w, circle.h);
+				
+				
+			}
 	    }
+	  
+	    
 	}
+	
+	class Rectangle{
+		
+		private int x,y,w,h;
+		
+		public Rectangle(int x, int y,int w, int h)
+		{
+			this.x = x;
+			this.y = y;
+			this.w = w;
+			this.h = h;
+		}
+	
+	    }
+class Triangle{
+		
+		private int x,y;
+		
+		public Triangle(int x, int y)
+		{
+			this.x = x;
+			this.y = y;
+			
+		}
+	
+	    }
+class Circle{
+	
+	private int x,y,w,h;
+	
+	public Circle(int x, int y,int w, int h)
+	{
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+	}
+
+    }
+	
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
