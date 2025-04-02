@@ -33,52 +33,49 @@ public class Paint implements MouseListener, MouseMotionListener{
 	private JFrame frame;
 	private DrawingPanel drawingPanel; 
 	
-	private Point lastPoint; // Para almacenar la última posición del mouse
-     // Para almacenar los puntos dibujados
+	private Point lastPoint;
 	private List<Point> points = new ArrayList<>();
 	private List<Rectangle> figuras = new ArrayList<>();
 	private List<Triangle> triangulos = new ArrayList<>();
 	private List<Circle> circulos = new ArrayList<>();
-
-
+    private List<Stroke> strokes = new ArrayList<>();
+    private boolean eraserMode = false;
+    private Color currentColor = Color.BLACK;
     private int method = 1;
+    public int gr=2;
 
-    List<List<Point>> listaDePuntos = new ArrayList<>();
-    public float grosor=2;
-	/**
-	 * Launch the application.
-	 */
+    class Stroke {
+        List<Point> points;
+        Color color;
+        int size;
+        boolean isEraser;
+
+        public Stroke(List<Point> points, Color color, int size, boolean isEraser) {
+            this.points = new ArrayList<>(points);
+            this.color = color;
+            this.size = size;
+            this.isEraser = isEraser;
+        }
+    }
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				
+			public void run() {				
 				try {
 					Paint window = new Paint();
-					window.frame.setVisible(true);
-					
-					
+					window.frame.setVisible(true);					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		
-		
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public Paint() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	 
-	private void initialize() {
-		
+	private void initialize() {		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 726, 521);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,47 +89,35 @@ public class Paint implements MouseListener, MouseMotionListener{
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnNewButton = new JButton("Pincel");
-		btnNewButton.addActionListener(new ActionListener() {
-			
+		btnNewButton.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			//	 g2d.setStroke(new BasicStroke(3));
 				System.out.println("hello world");
-			//	stroke.
-				
 			}
 		});
 		panel_1.add(btnNewButton, BorderLayout.NORTH);
 		
 		JPanel panel_3 = new JPanel();
-                panel_3.setLayout(new GridLayout(5,1,20,10));
+        panel_3.setLayout(new GridLayout(9,1,20,10));
 		panel_1.add(panel_3, BorderLayout.CENTER);
 		
-		
 		JButton btnNewButton_1 = new JButton("Borrar");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			
+		btnNewButton_1.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				listaDePuntos.clear();
-				drawingPanel.repaint();
-				
-				
+				strokes.clear();
+				drawingPanel.repaint();				
 			}
 		});
 		
-	    JSlider slider = new JSlider(1, 5, 1); 
-	    slider.setMajorTickSpacing(1);
+	    JSlider slider = new JSlider(1, 20, 2); 
+	    slider.setMajorTickSpacing(5);
+	    slider.setPaintTicks(true);
 	    slider.setPaintLabels(true);
-	    slider.addChangeListener(new ChangeListener() {
-			
+	    slider.addChangeListener(new ChangeListener() {			
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				// TODO Auto-generated method stub
-				int value = slider.getValue();
-                System.out.println(value);
-                grosor=value;
+				gr = slider.getValue();
 			}
 		});    
 	       
@@ -140,126 +125,109 @@ public class Paint implements MouseListener, MouseMotionListener{
 		panel_3.add(slider);
 		JButton btnNewButton_2 = new JButton("Rectangulo");
 		btnNewButton_2.addActionListener(new ActionListener() {
-
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+			public void actionPerformed(ActionEvent e) {				
 				method = 2;
-			}
-			
+			}			
 		});
 		JButton btnNewButton_3 = new JButton("Triangulo");
 		btnNewButton_3.addActionListener(new ActionListener() {
-
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+			public void actionPerformed(ActionEvent e) {				
 				method = 3;
-			}
-			
+			}			
 		});
 		JButton btnNewButton_4 = new JButton("Cicle");
 		btnNewButton_4.addActionListener(new ActionListener() {
-
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+			public void actionPerformed(ActionEvent e) {				
 				method = 4;
-			}
-			
+			}			
+		});
+		JButton eraserButton = new JButton("Borrador");
+		eraserButton.addActionListener(e -> {
+		    currentColor = Color.WHITE;
+		    gr = 10;
+		    eraserMode = true;
 		});
 		panel_3.add(btnNewButton_2);
 		panel_3.add(btnNewButton_3);
 		panel_3.add(btnNewButton_4);
-
-
+		panel_3.add(eraserButton);
+		
+		JButton btnRojo = new JButton("Rojo");
+		btnRojo.addActionListener(e -> {
+		    currentColor = Color.RED;
+		    eraserMode = false;
+		});
+		panel_3.add(btnRojo);
+		
+		JButton btnAzul = new JButton("Azul");
+		btnAzul.addActionListener(e -> {
+		    currentColor = Color.BLUE;
+		    eraserMode = false;
+		});
+		panel_3.add(btnAzul);
+		
+		JButton btnVerde = new JButton("Verde");
+		btnVerde.addActionListener(e -> {
+		    currentColor = Color.GREEN;
+		    eraserMode = false;
+		});
+		panel_3.add(btnVerde);
 
 		JPanel panel_4 = new JPanel();
 		panel_1.add(panel_4, BorderLayout.SOUTH);
 			
-		
 		drawingPanel = new DrawingPanel();
         panel.add(drawingPanel, BorderLayout.CENTER);
-
         drawingPanel.addMouseListener(this);
         drawingPanel.addMouseMotionListener(this);
-	        
-		/*JPanel panel_2 = new JPanel();
-		panel.add(panel_2, BorderLayout.CENTER);
-		
-		panel_2.addMouseListener(this);
-		panel_2.addMouseMotionListener(this);*/
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub 
-
 		if(method==2) {
 			Rectangle tmp = new Rectangle(e.getX(),e.getY(),100,100);
 			figuras.add(tmp);
+		}	
+		if(method==3) {
+			Triangle tmp = new Triangle(e.getX(),e.getY());
+			triangulos.add(tmp);
 		}
-		
-		
-	
-	if(method==3) {
-		Triangle tmp = new Triangle(e.getX(),e.getY());
-		triangulos.add(tmp);
+		if(method==4) {
+			Circle tmp = new Circle(e.getX(),e.getY(),100,100);
+			circulos.add(tmp);
+		}	
+		drawingPanel.repaint();
 	}
-	if(method==4) {
-		Circle tmp = new Circle(e.getX(),e.getY(),100,100);
-		circulos.add(tmp);
-	}
-	
-	drawingPanel.repaint();
-}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub 
 		lastPoint = e.getPoint();
-        points.add(lastPoint); // Añadir el primer punto
-         
+        points.add(lastPoint); 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub 
-		
-		
-		ArrayList<Point> listaCopiada = (ArrayList<Point>) (((ArrayList<Point>) points).clone());
-		
-		listaDePuntos.add(listaCopiada); 
-		points.clear();
-		
-		System.out.println(listaDePuntos);
+		if (!points.isEmpty()) {
+            strokes.add(new Stroke(new ArrayList<>(points), currentColor, gr, eraserMode));
+            points.clear();
+        }
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub 
-	}
+	public void mouseEntered(MouseEvent e) {}
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub 
-	}
+	public void mouseExited(MouseEvent e) {}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
 		 Point newPoint = e.getPoint(); 
-		 
 		 points.add(newPoint);  
-	        
 	     drawingPanel.repaint();
-	        
 	     lastPoint = newPoint;
-	        
-	        
 	}
 
 	class DrawingPanel extends JPanel {
@@ -272,96 +240,90 @@ public class Paint implements MouseListener, MouseMotionListener{
 	        super.paintComponent(g);
 	        Graphics2D g2d = (Graphics2D) g;
 	        
-	        // Configuración del dibujo
-	        g2d.setColor(Color.BLACK);
-	        g2d.setStroke(new BasicStroke(grosor));
-	        
-	        // Dibujar todos los trazos guardados (listaDePuntos)
-	        for (List<Point> trazo : listaDePuntos) {
-	            if (trazo.size() > 1) {
-	                for (int i = 1; i < trazo.size(); i++) {
-	                    Point p1 = trazo.get(i - 1);
-	                    Point p2 = trazo.get(i);
-	                    g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
+	        // Draw saved strokes
+	        for (Stroke stroke : strokes) {
+	            if (stroke.isEraser) {
+	                g2d.setColor(stroke.color);
+	                int radius = stroke.size;
+	                for (Point p : stroke.points) {
+	                    g2d.fillOval(p.x - radius, p.y - radius, 2 * radius, 2 * radius);
+	                }
+	            } else {
+	                g2d.setColor(stroke.color);
+	                g2d.setStroke(new BasicStroke(stroke.size));
+	                if (stroke.points.size() > 1) {
+	                    for (int i = 1; i < stroke.points.size(); i++) {
+	                        Point p1 = stroke.points.get(i - 1);
+	                        Point p2 = stroke.points.get(i);
+	                        g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
+	                    }
 	                }
 	            }
 	        }
 	        
-	        // Dibujar el trazo actual (points) mientras se arrastra el mouse
-	        if (points.size() > 1) {
-	            for (int i = 1; i < points.size(); i++) {
-	                Point p1 = points.get(i - 1);
-	                Point p2 = points.get(i);
-	                g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
+	        // Draw current points
+	        if (!points.isEmpty()) {
+	            if (eraserMode) {
+	                g2d.setColor(currentColor);
+	                int radius = gr;
+	                for (Point p : points) {
+	                    g2d.fillOval(p.x - radius, p.y - radius, 2 * radius, 2 * radius);
+	                }
+	            } else {
+	                g2d.setColor(currentColor);
+	                g2d.setStroke(new BasicStroke(gr));
+	                if (points.size() > 1) {
+	                    for (int i = 1; i < points.size(); i++) {
+	                        Point p1 = points.get(i - 1);
+	                        Point p2 = points.get(i);
+	                        g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
+	                    }
+	                }
 	            }
 	        }
-	        for (Iterator iterator = figuras.iterator(); iterator.hasNext();) {
-				Rectangle rectangle = (Rectangle) iterator.next();
-				
-				g2d.drawRect(rectangle.x, rectangle.y, rectangle.w, rectangle.h);
-				
-			}
-	        for (Iterator iterator = triangulos.iterator(); iterator.hasNext();) {
-				Triangle triangle = (Triangle) iterator.next();
-				
-				g2d.drawPolygon(new int[] {triangle.x, triangle.x+50, triangle.x+100}, new int[] {triangle.y, triangle.y-100, triangle.y}, 3);
-			}
-	        for (Iterator iterator = circulos.iterator(); iterator.hasNext();) {
-				Circle circle = (Circle) iterator.next();
-				
-				g2d.drawOval(circle.x, circle.y, circle.w, circle.h);
-				
-				
-			}
+	        
+	        g2d.setColor(Color.BLACK);
+	        for (Rectangle rectangle : figuras) {
+	            g2d.drawRect(rectangle.x, rectangle.y, rectangle.w, rectangle.h);
+	        }
+	        for (Triangle triangle : triangulos) {
+	            g2d.drawPolygon(new int[]{triangle.x, triangle.x + 50, triangle.x + 100}, new int[]{triangle.y, triangle.y - 100, triangle.y}, 3);
+	        }
+	        for (Circle circle : circulos) {
+	            g2d.drawOval(circle.x, circle.y, circle.w, circle.h);
+	        }
 	    }
-	  
-	    
 	}
 	
-	class Rectangle{
-		
-		private int x,y,w,h;
-		
-		public Rectangle(int x, int y,int w, int h)
-		{
-			this.x = x;
-			this.y = y;
-			this.w = w;
-			this.h = h;
-		}
-	
-	    }
-class Triangle{
-		
-		private int x,y;
-		
-		public Triangle(int x, int y)
-		{
-			this.x = x;
-			this.y = y;
-			
-		}
-	
-	    }
-class Circle{
-	
+	class Rectangle{ 
 	private int x,y,w,h;
-	
-	public Circle(int x, int y,int w, int h)
+	public Rectangle(int x, int y,int w, int h)
+{ 
+	this.x = x;
+	this.y = y;
+	this.w = w;
+	this.h = h; 
+	} 
+	}
+	class Triangle
 	{
+		private int x,y;
+		public Triangle(int x, int y)
+		{ 
 		this.x = x;
 		this.y = y;
+		}
+}
+	class Circle{ 
+		private int x,y,w,h;
+		public Circle(int x, int y,int w, int h)
+		{ this.x = x;
+		this.y = y;
 		this.w = w;
-		this.h = h;
-	}
-
-    }
-	
+		this.h = h; 
+		} 
+		}
 
 	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void mouseMoved(MouseEvent e) {}
 }
