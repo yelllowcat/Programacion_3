@@ -18,7 +18,7 @@ import javax.swing.JButton;
 
 
 
-public class Ventana extends JFrame implements KeyListener{
+public class Ventana extends JFrame  {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -89,10 +89,11 @@ public class Ventana extends JFrame implements KeyListener{
 		
         drawPanel = new DrawingPanel();
         panel.setLayout(new BorderLayout(0, 0));
-
+        
         panel.add(drawPanel, BorderLayout.CENTER);
-        addKeyListener(this);
         setFocusable(true);
+                    addKeyListener(new colisionDetector());
+
 	}
 	  class DrawingPanel extends JPanel {
 		    public DrawingPanel() {
@@ -107,53 +108,77 @@ public class Ventana extends JFrame implements KeyListener{
 		        // Configuración del dibujo
 		        g2d.setColor(Color.yellow);
 		       g2d.fillOval(x, y, 30, 30);
+                       g2d.setColor(Color.gray);
+                       g2d.fillRect(20, 20, 30, 150);
 		    }
 		    }
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println(x);
-		System.out.println(y);
+       
 
-		if (e.getKeyCode()==68 ) {
+ 
+             
+     class colisionDetector implements KeyListener{
+          
+ 
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+              
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            int auxX = x;
+        int auxY = y;
+
+           
+              if (e.getKeyCode()==68 ) {            
 			x++;
 			if(x>440) {
 				x=-29;
 			}
+                  
 		}
 		if (e.getKeyCode()==87) {
+                
+                    
 			y--;
 			if (y < -30) {
-				y=380;
+				y=353;
 			}
-		}
+		
+                }
 		if (e.getKeyCode()==65) {
+                    
+                        
+                   
+                
 			x--;
 			if (x< -30) {
 				x=440;
-			}
+                        
 		}
+                }
 		if (e.getKeyCode()==83) {
+                   
+                        
+                   
 			y++;
-			if (y>381) {
+			if (y>354) {
 			y=-29;	
 			}
 		}
-	
+                 if ((y>20 && x>20 && x<50 && y<170)==true){
+                     x=auxX;
+                     y=auxY;
+                 }
+                 
+            
 				
-		drawPanel.repaint();
-	}
+		drawPanel.repaint();        
+        }
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
+              
+}      
 }
