@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -15,6 +16,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 
 
@@ -23,7 +27,10 @@ public class Ventana extends JFrame  {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
     private DrawingPanel drawPanel;
-    int x=200,y=180;
+    int seg=0;
+    int x=200,y=200;
+    private int actual=0;
+    Timer timer;
 	/**
 	 * Launch the application.
 	 */
@@ -62,6 +69,8 @@ public class Ventana extends JFrame  {
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2, BorderLayout.NORTH);
 		panel_2.setBackground(new Color(28, 113, 216));
+                JLabel label= new JLabel("0:00");
+                panel_2.add(label);
 		
 		JPanel panel = new JPanel();
 		panel_1.add(panel, BorderLayout.CENTER);
@@ -85,7 +94,31 @@ public class Ventana extends JFrame  {
 
 			}
 		});
-		
+		int delay = 10; //milliseconds
+    ActionListener taskPerformer = new ActionListener() {
+         public void actionPerformed(ActionEvent evt) {
+          
+ String [] split_string = label.getText().split(":");
+            int mil = Integer.parseInt(split_string[1]);
+               mil+=1;
+				
+				if(mil>=10) {
+					seg++;
+					mil=1;
+				}
+				label.setText(seg+":"+mil+"");
+             
+             
+           
+                                      update();
+
+         }
+         
+     };
+  timer =new Timer(delay, taskPerformer);
+  
+
+				 
 		
         drawPanel = new DrawingPanel();
         panel.setLayout(new BorderLayout(0, 0));
@@ -126,41 +159,41 @@ public class Ventana extends JFrame  {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            int auxX = x;
-        int auxY = y;
+             actual =e.getKeyCode();
+                   update();
+                   timer.start();
+        }
 
-           
-              if (e.getKeyCode()==68 ) {            
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
+              
+}      
+     public void update(){
+         int auxX = x;
+        int auxY = y;
+      
+              if (actual==68 ) {            
 			x++;
 			if(x>440) {
 				x=-29;
 			}
                   
 		}
-		if (e.getKeyCode()==87) {
-                
-                    
+		if (actual==87) {
 			y--;
 			if (y < -30) {
 				y=353;
 			}
-		
                 }
-		if (e.getKeyCode()==65) {
-                    
-                        
-                   
-                
+		if (actual==65) {
+         
 			x--;
 			if (x< -30) {
 				x=440;
-                        
 		}
                 }
-		if (e.getKeyCode()==83) {
-                   
-                        
-                   
+		if (actual==83) {
 			y++;
 			if (y>354) {
 			y=-29;	
@@ -173,12 +206,6 @@ public class Ventana extends JFrame  {
                  
             
 				
-		drawPanel.repaint();        
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-        }
-              
-}      
+		drawPanel.repaint(); 
+     }
 }
