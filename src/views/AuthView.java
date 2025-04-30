@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -76,7 +77,7 @@ public class AuthView extends JFrame{
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Sabiduría como meta, patria como destino");
-		lblNewLabel_1.setBounds(69, 73, 308, 16);
+		lblNewLabel_1.setBounds(69, 73, 330, 16);
 		lblNewLabel_1.setFont(subtitleFont);
 		lblNewLabel_1.setForeground(secondaryColor);
 		lblNewLabel_1.setHorizontalAlignment(JLabel.CENTER);
@@ -237,12 +238,12 @@ public class AuthView extends JFrame{
 		JLabel lblNewLabel = new JLabel("UABCS - DASC");
 		lblNewLabel.setForeground(primaryColor);
 		lblNewLabel.setFont(titleFont);
-		lblNewLabel.setBounds(107, 35, 210, 26);
+		lblNewLabel.setBounds(107, 30, 210, 26);
 		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Sabiduría como meta, patria como destino");
-		lblNewLabel_1.setBounds(69, 73, 308, 16);
+		lblNewLabel_1.setBounds(69, 68, 330, 16);
 		lblNewLabel_1.setFont(subtitleFont);
 		lblNewLabel_1.setForeground(secondaryColor);
 		lblNewLabel_1.setHorizontalAlignment(JLabel.CENTER);
@@ -251,13 +252,13 @@ public class AuthView extends JFrame{
 		JLabel lblNewLabel_2_1 = new JLabel("Crea tu cuenta");
 		lblNewLabel_2_1.setForeground(textColor);
 		lblNewLabel_2_1.setFont(new Font("SansSerif", Font.BOLD, 18));
-		lblNewLabel_2_1.setBounds(49, 120, 340, 39);
+		lblNewLabel_2_1.setBounds(49, 80, 340, 39);
 		lblNewLabel_2_1.setHorizontalAlignment(JLabel.CENTER);
 		panel.add(lblNewLabel_2_1);
 		
 		// Nombre
 		JLabel lblNombre = new JLabel("");
-		lblNombre.setBounds(36, 170, 162, 70);
+		lblNombre.setBounds(36, 110, 162, 70);
 		lblNombre.setBorder(BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(primaryColor), 
 				"Nombre", 
@@ -269,14 +270,14 @@ public class AuthView extends JFrame{
 		
 		nombreField = new JTextField();
 		nombreField.setBackground(accentColor);
-		nombreField.setBounds(43, 195, 148, 35);
+		nombreField.setBounds(43, 135, 148, 35);
 		nombreField.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		nombreField.setBorder(new EmptyBorder(5, 10, 5, 10));
 		panel.add(nombreField);
 		
 		// Apellido
 		JLabel lblApellido = new JLabel("");
-		lblApellido.setBounds(220, 170, 169, 70);
+		lblApellido.setBounds(220, 110, 169, 70);
 		lblApellido.setBorder(BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(primaryColor), 
 				"Apellido", 
@@ -288,33 +289,88 @@ public class AuthView extends JFrame{
 		
 		apellidoField = new JTextField();
 		apellidoField.setBackground(accentColor);
-		apellidoField.setBounds(227, 195, 155, 35);
+		apellidoField.setBounds(227, 135, 155, 35);
 		apellidoField.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		apellidoField.setBorder(new EmptyBorder(5, 10, 5, 10));
 		panel.add(apellidoField);
 		
 		// Email
-		JLabel lblEmail = new JLabel("");
-		lblEmail.setBounds(36, 250, 353, 70);
-		lblEmail.setBorder(BorderFactory.createTitledBorder(
+		JLabel lblEmp = new JLabel("");
+		lblEmp.setBounds(36, 185, 162, 70);
+		lblEmp.setBorder(BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(primaryColor), 
-				"Correo electrónico", 
+				"Empresa", 
 				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
 				javax.swing.border.TitledBorder.DEFAULT_POSITION, 
 				labelFont, 
 				primaryColor));
-		panel.add(lblEmail);
+		panel.add(lblEmp);
 		
 		textField = new JTextField();
 		textField.setBackground(accentColor);
-		textField.setBounds(43, 275, 339, 35);
+		textField.setBounds(43, 210, 148, 35);
 		textField.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		textField.setBorder(new EmptyBorder(5, 10, 5, 10));
 		panel.add(textField);
-		
+		// ambito
+				JLabel lblAmbit = new JLabel("");
+				lblAmbit.setBounds(220, 185, 169, 70);
+				lblAmbit.setBorder(BorderFactory.createTitledBorder(
+						BorderFactory.createLineBorder(primaryColor), 
+						"Ambito", 
+						javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+						javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+						labelFont, 
+						primaryColor));
+				panel.add(lblAmbit);
+				JComboBox comboAmbits = new JComboBox();
+				comboAmbits.setBounds(227, 203, 155, 45);
+				comboAmbits.addItem("Tecnología");
+				comboAmbits.addItem("Salud");
+				comboAmbits.addItem("Educacion");
+				comboAmbits.addItem("Comercio");
+				comboAmbits.addItem("Otro");
+				panel.add(comboAmbits);
+				
+				JLabel lblCargo = new JLabel("");
+				lblCargo.setBounds(36, 260, 162, 70);
+				lblCargo.setBorder(BorderFactory.createTitledBorder(
+						BorderFactory.createLineBorder(primaryColor), 
+						"Cargo", 
+						javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+						javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+						labelFont, 
+						primaryColor));
+				panel.add(lblCargo);
+				
+				nombreField = new JTextField();
+				nombreField.setBackground(accentColor);
+				nombreField.setBounds(43, 285, 148, 35);
+				nombreField.setFont(new Font("SansSerif", Font.PLAIN, 14));
+				nombreField.setBorder(new EmptyBorder(5, 10, 5, 10));
+				panel.add(nombreField);
+				
+				JLabel lblCorreo = new JLabel("");
+				lblCorreo.setBounds(220, 260, 169, 70);
+				lblCorreo.setBorder(BorderFactory.createTitledBorder(
+						BorderFactory.createLineBorder(primaryColor), 
+						"Correo ", 
+						javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+						javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+						labelFont, 
+						primaryColor));
+				panel.add(lblCorreo);
+				apellidoField = new JTextField();
+				apellidoField.setBackground(accentColor);
+				apellidoField.setBounds(227, 285, 155, 35);
+				apellidoField.setFont(new Font("SansSerif", Font.PLAIN, 14));
+				apellidoField.setBorder(new EmptyBorder(5, 10, 5, 10));
+				panel.add(apellidoField);
+
+				
 		// Password
 		JLabel lblPassword = new JLabel("");
-		lblPassword.setBounds(36, 330, 162, 70);
+		lblPassword.setBounds(36, 335, 162, 70);
 		lblPassword.setBorder(BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(primaryColor), 
 				"Contraseña", 
@@ -326,14 +382,14 @@ public class AuthView extends JFrame{
 		
 		passwordField = new JPasswordField();
 		passwordField.setBackground(accentColor);
-		passwordField.setBounds(43, 355, 148, 35);
+		passwordField.setBounds(43, 360, 148, 35);
 		passwordField.setBorder(new EmptyBorder(5, 10, 5, 10));
 		passwordField.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		panel.add(passwordField);
 		
 		// Confirm Password
 		JLabel lblConfirmPassword = new JLabel("");
-		lblConfirmPassword.setBounds(220, 330, 169, 70);
+		lblConfirmPassword.setBounds(220, 335, 169, 70);
 		lblConfirmPassword.setBorder(BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(primaryColor), 
 				"Confirmar Contraseña", 
@@ -345,10 +401,21 @@ public class AuthView extends JFrame{
 		
 		confirmPasswordField = new JPasswordField();
 		confirmPasswordField.setBackground(accentColor);
-		confirmPasswordField.setBounds(227, 355, 155, 35);
+		confirmPasswordField.setBounds(227, 360, 155, 35);
 		confirmPasswordField.setBorder(new EmptyBorder(5, 10, 5, 10));
 		confirmPasswordField.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		panel.add(confirmPasswordField);
+		
+		JLabel lblConfirmar = new JLabel("");
+		lblConfirmar.setBounds(220, 335, 169, 70);
+		lblConfirmar.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createLineBorder(primaryColor), 
+				"Confirmar Contraseña", 
+				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+				javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+				labelFont, 
+				primaryColor));
+		panel.add(lblConfirmar);
 		
 		JButton btnRegister = new JButton("Registrarse");
 		btnRegister.setBackground(primaryColor);
