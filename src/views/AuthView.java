@@ -151,6 +151,16 @@ public class AuthView extends JFrame{
 				String passText = new String(passwordField.getPassword());
 				Boolean flag1 = false, flag2 = false;
 				
+				AuthModel am = new AuthModel();
+				boolean isLogin = am.login(textField.getText(), passText);
+				
+				 if(isLogin) {
+						JOptionPane.showMessageDialog(null, "Bienvenido.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+						
+					} else {
+						JOptionPane.showMessageDialog(null, "Error al acceder", "Verifique su información", JOptionPane.WARNING_MESSAGE);
+					}
 				if(passText.equals("")) {
 					passwordField.setBorder(BorderFactory.createLineBorder(Color.red,2));
 				} else {
@@ -165,17 +175,6 @@ public class AuthView extends JFrame{
 					flag2 = true;
 				}
 				
-				if(flag1 && flag2) {
-					if(textField.getText().equals("fake@mail.com")) {
-						if(passText.equals("12345")) {
-							JOptionPane.showMessageDialog(null, "Bienvenido.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-						} else {
-							JOptionPane.showMessageDialog(null, "Error al acceder", "Verifique su información", JOptionPane.WARNING_MESSAGE);
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Error al acceder", "Verifique su información", JOptionPane.WARNING_MESSAGE);
-					}
-				}
 			}
 		});
 		btnNewButton.setBounds(36, 413, 353, 37);
