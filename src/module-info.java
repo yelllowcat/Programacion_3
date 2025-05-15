@@ -4,6 +4,7 @@
 /**
  * 
  */
-module mvcIDS {
+module MVC {
 	requires java.desktop;
+	requires java.sql;
 }

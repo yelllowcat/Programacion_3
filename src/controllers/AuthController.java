@@ -21,4 +21,5 @@ public class AuthController {
 		vista.register();
 	}
 
+
 }
