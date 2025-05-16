@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,7 +21,8 @@ import javax.swing.border.LineBorder;
 
 import controllers.AuthController;
 import controllers.HomeController;
-import models.AuthModel; 
+import models.AuthModel;
+import models.UsersModel; 
 
 public class AuthView {
 	
@@ -55,13 +57,6 @@ public class AuthView {
 		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
 		panel.add(lblNewLabel);
 		
-		/*
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setOpaque(true);
-		lblNewLabel_1.setBackground(new Color(228, 192, 250));
-		lblNewLabel_1.setBounds(124, 25, 183, 47); 
-		panel.add(lblNewLabel_1);
-		*/
 		
 		JLabel lblNewLabel_8 = new JLabel("");
 		lblNewLabel_8.setBounds(36, 186, 353, 81);
@@ -197,7 +192,194 @@ public class AuthView {
 		ventana.repaint();
 		ventana.revalidate();
 	}	
-	
+	public void register() {
+	    JFrame ventana = new JFrame();
+	    
+	    ventana.setVisible(true);
+	    ventana.setSize(930, 600);
+	    ventana.setLocationRelativeTo(null);
+	    ventana.setTitle("Registro");
+	    ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    ventana.setResizable(true);
+	    
+	    JTextField nombreField;
+	    JTextField apellidoField;
+	    JTextField sexoField;
+	    JTextField edadField;
+	    
+	    JPanel panel = new JPanel();
+	    panel.setBackground(new Color(255, 255, 255));
+	    panel.setLocation(0, 0);
+	    panel.setLayout(null);
+	    panel.setSize(1000, 600);
+	    
+	    JLabel lblNewLabel = new JLabel("UABCS - DASC\n");
+	    lblNewLabel.setForeground(new Color(0, 0, 0));
+	    lblNewLabel.setFont(new Font("Kefa", Font.PLAIN, 24));
+	    lblNewLabel.setBounds(107, 35, 210, 26);
+	    lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
+	    panel.add(lblNewLabel);
+	    
+	    JLabel lblNewLabel_1 = new JLabel("Sabiduría como meta, patria como destino ");
+	    lblNewLabel_1.setBounds(69, 73, 308, 16);
+	    lblNewLabel_1.setHorizontalAlignment(JLabel.CENTER);
+	    panel.add(lblNewLabel_1);
+	    
+	    JLabel lblNewLabel_2_1 = new JLabel("Registro de nuevo usuario");
+	    lblNewLabel_2_1.setForeground(Color.BLACK);
+	    lblNewLabel_2_1.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
+	    lblNewLabel_2_1.setBounds(49, 109, 340, 39);
+	    lblNewLabel_2_1.setHorizontalAlignment(JLabel.CENTER);
+	    panel.add(lblNewLabel_2_1);
+	    
+	    // Campo Nombre
+	    JLabel lblNombre = new JLabel("");
+	    lblNombre.setBounds(36, 155, 353, 65);
+	    lblNombre.setBorder(BorderFactory.createTitledBorder("Nombre"));
+	    panel.add(lblNombre);
+	    
+	    nombreField = new JTextField();
+	    nombreField.setBackground(new Color(218, 230, 225));
+	    nombreField.setBounds(49, 180, 328, 30);
+	    panel.add(nombreField);
+	    nombreField.setBorder(null);
+	    nombreField.setColumns(10);
+	    
+	    // Campo Apellido
+	    JLabel lblApellido = new JLabel("");
+	    lblApellido.setBounds(36, 225, 353, 65);
+	    lblApellido.setBorder(BorderFactory.createTitledBorder("Apellido"));
+	    panel.add(lblApellido);
+	    
+	    apellidoField = new JTextField();
+	    apellidoField.setBackground(new Color(218, 230, 225));
+	    apellidoField.setBounds(49, 250, 328, 30);
+	    panel.add(apellidoField);
+	    apellidoField.setBorder(null);
+	    apellidoField.setColumns(10);
+	    
+	    // Campo Sexo
+	    JLabel lblSexo = new JLabel("");
+	    lblSexo.setBounds(36, 295, 353, 65);
+	    lblSexo.setBorder(BorderFactory.createTitledBorder("Sexo"));
+	    panel.add(lblSexo);
+	    
+	    sexoField = new JTextField();
+	    sexoField.setBackground(new Color(218, 230, 225));
+	    sexoField.setBounds(49, 320, 328, 30);
+	    panel.add(sexoField);
+	    sexoField.setBorder(null);
+	    sexoField.setColumns(10);
+	    
+	    // Campo Edad
+	    JLabel lblEdad = new JLabel("");
+	    lblEdad.setBounds(36, 365, 353, 65);
+	    lblEdad.setBorder(BorderFactory.createTitledBorder("Edad"));
+	    panel.add(lblEdad);
+	    
+	    edadField = new JTextField();
+	    edadField.setBackground(new Color(218, 230, 225));
+	    edadField.setBounds(49, 390, 328, 30);
+	    panel.add(edadField);
+	    edadField.setBorder(null);
+	    edadField.setColumns(10);
+	    
+	    // Botón de Registro
+	    JButton btnRegistrar = new JButton("Registrarse");
+	    btnRegistrar.setBackground(new Color(0, 0, 0));
+	    btnRegistrar.setOpaque(true);
+	    btnRegistrar.setForeground(new Color(255, 255, 255));
+	    btnRegistrar.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            
+	            Boolean nombreValido = false, apellidoValido = false;
+	            Boolean sexoValido = false, edadValida = false;
+	            
+	            // Validación del nombre
+	            if(nombreField.getText().equals("")) {
+	                nombreField.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+	            } else {
+	                nombreField.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+	                nombreValido = true;
+	            }
+	            
+	            // Validación del apellido
+	            if(apellidoField.getText().equals("")) {
+	                apellidoField.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+	            } else {
+	                apellidoField.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+	                apellidoValido = true;
+	            }
+	            
+	            // Validación del sexo
+	            if(sexoField.getText().equals("")) {
+	                sexoField.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+	            } else {
+	                sexoField.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+	                sexoValido = true;
+	            }
+	            
+	            // Validación de la edad
+	            try {
+	                int edad = Integer.parseInt(edadField.getText());
+	                if(edad <= 0 || edad > 120) {
+	                    edadField.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+	                } else {
+	                    edadField.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+	                    edadValida = true;
+	                }
+	            } catch(NumberFormatException ex) {
+	                edadField.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+	            }
+	            
+	            // Si todos los campos son válidos
+	            if(nombreValido && apellidoValido && sexoValido && edadValida) {
+	                // Aquí iría el código para guardar el usuario en la base de datos
+	            
+							UsersModel um = new UsersModel();
+							um.addUser(nombreField.getText().toString(), apellidoField.getText(), sexoField.getText(),edadField.getText());
+						
+	                JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
+	                
+	                ventana.dispose();
+	                AuthView.this.login(); // Redirigir al login después del registro
+	            }
+	        }
+	    });
+	    btnRegistrar.setBounds(36, 450, 341, 37);
+	    panel.add(btnRegistrar);
+	    
+	    // Botón para volver al login
+	    JLabel lblYaTienesCuenta = new JLabel("¿Ya tienes una cuenta?");
+	    lblYaTienesCuenta.setBounds(225, 500, 152, 16);
+	    panel.add(lblYaTienesCuenta);
+	    
+	    JButton btnIrLogin = new JButton("Inicia sesión aquí");
+	    btnIrLogin.setBackground(new Color(0, 0, 0));
+	    btnIrLogin.setOpaque(true);
+	    btnIrLogin.setForeground(new Color(0, 0, 0));
+	    btnIrLogin.setBounds(205, 530, 200, 20);
+	    btnIrLogin.addActionListener(new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            ventana.dispose();
+	            AuthView.this.login();
+	        }
+	    });
+	    panel.add(btnIrLogin);
+	    
+	    // Imagen de fondo (similar al login)
+	    JLabel lblBackground = new JLabel("");
+	    lblBackground.setIcon(new ImageIcon(this.getClass().getResource("/images/background.jpg")));
+	    lblBackground.setBounds(531, 6, 383, 494);
+	    lblBackground.setBorder(BorderFactory.createLineBorder(Color.white, 5, true));
+	    panel.add(lblBackground);
+	    
+	    ventana.add(panel);
+	    ventana.repaint();
+	    ventana.revalidate();
+	}
+	/*
 	public void register()
 	{ 	
 		System.out.println("Hola");
@@ -227,13 +409,7 @@ public class AuthView {
 		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
 		panel.add(lblNewLabel);
 		
-		/*
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setOpaque(true);
-		lblNewLabel_1.setBackground(new Color(228, 192, 250));
-		lblNewLabel_1.setBounds(124, 25, 183, 47); 
-		panel.add(lblNewLabel_1);
-		*/
+		
 		
 		JLabel lblNewLabel_8 = new JLabel("");
 		lblNewLabel_8.setBounds(36, 186, 353, 81);
@@ -365,7 +541,7 @@ public class AuthView {
 		ventana.add(panel);
 		ventana.repaint();
 		ventana.revalidate();
-	}
+	}*/
 	
 	public void forgot()
 	{ 

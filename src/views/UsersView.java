@@ -77,7 +77,7 @@ public class UsersView {
 
 		        panel2.add(scrollPane,BorderLayout.CENTER);
 		        
-		    
+		       
 		for (Iterator iterator = usuarios.iterator(); iterator.hasNext();) {
 			User usuario = (User) iterator.next();
 			Object[] fila = {usuario.id, usuario.name, usuario.email,usuario.role,usuario.phone};

@@ -3,6 +3,7 @@ package models;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -92,4 +93,20 @@ public boolean remove(int id) {
 		return false;
 		
 	}
+
+public void addUser(String nombre,String email,String role,String phone) {
+	 String query = "INSERT INTO users (name, email, role, phone) VALUES (?, ?, ?, ?)";
+	    try (Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/testpro", "root", "yellow");
+	         PreparedStatement pstmt = conn.prepareStatement(query)) {
+	        
+	        pstmt.setString(1, nombre);
+	        pstmt.setString(2, email);
+	        pstmt.setString(3, role);
+	        pstmt.setString(4, phone);
+
+	        pstmt.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+}
 }
